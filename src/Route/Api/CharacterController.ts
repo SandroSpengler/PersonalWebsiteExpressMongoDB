@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req: any, res: any) => {
-  const allUsers = CharacterRepository.getAllUsers();
+  const allUsers: Object = CharacterRepository.getAllUsers();
 
   res.send(await allUsers);
 });

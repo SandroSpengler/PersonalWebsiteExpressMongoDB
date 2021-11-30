@@ -1,22 +1,25 @@
 const mongoose = require("mongoose");
-
-const { DB_CONNECTION, PORT } = require("./Config/config");
-
 const express = require("express");
 
+const { DB_CONNECTION, PORT } = require("./Config/config");
 const APP = express();
 
-APP.get("/", (req: any, res: any) => {
+const bodyParser = require("body-parser");
+
+const CharacterRouter = require("./Route/Api/CharacterController");
+
+APP.get("/", (req, res) => {
   res.send("<h1>Main Page!!!!</h1>");
 });
 
-APP.use("/api/character", require("./Route/Api/CharacterController"));
+APP.use("/api/character", CharacterRouter);
+APP.use(bodyParser.json());
 
-const connectToMongoDB = (): void => {
+const connectToMongoDB = () => {
   mongoose
     .connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB"))
-    .catch((err: Error) => {
+    .catch((err) => {
       console.log(err.message);
     });
 };

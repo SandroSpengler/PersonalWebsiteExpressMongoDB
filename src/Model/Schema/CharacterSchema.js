@@ -9,4 +9,4 @@ const CharacterSchema = new Schema({
   age: { type: String },
 });
 
-module.exports = mongoose.model("ApiSchema", CharacterSchema);
+module.exports = mongoose.model("CharacterSchema", CharacterSchema);

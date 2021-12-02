@@ -4,16 +4,20 @@ const express = require("express");
 const { DB_CONNECTION, PORT } = require("./Config/config");
 const APP = express();
 
-const bodyParser = require("body-parser");
-
 const CharacterRouter = require("./Route/Api/CharacterController");
 
 APP.get("/", (req, res) => {
   res.send("<h1>Main Page!!!!</h1>");
 });
 
-APP.use("/api/character", CharacterRouter);
-APP.use(bodyParser.json());
+APP.use(
+  "/api/character",
+  (req, res, next) => {
+    console.log("Middleware");
+    next();
+  },
+  CharacterRouter
+);
 
 const connectToMongoDB = () => {
   mongoose

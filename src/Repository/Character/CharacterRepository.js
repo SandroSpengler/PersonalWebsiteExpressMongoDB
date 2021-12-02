@@ -1,6 +1,6 @@
 const CharacterSchema = require("../../Model/Schema/CharacterSchema");
 
-const getAllUsers = async () => {
+const getAllCharacters = async () => {
   try {
     let foundCharacters = await CharacterSchema.find();
 
@@ -10,6 +10,16 @@ const getAllUsers = async () => {
   }
 
   return await searchAllUsers;
+};
+
+const getOneCharacter = async (id) => {
+  try {
+    const foundCharacter = await CharacterSchema.findById(id);
+
+    return foundCharacter;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 const createNewCharacter = async (character) => {
@@ -31,4 +41,4 @@ const createNewCharacter = async (character) => {
   }
 };
 
-module.exports = { getAllUsers, createNewCharacter };
+module.exports = { getAllCharacters, getOneCharacter, createNewCharacter };

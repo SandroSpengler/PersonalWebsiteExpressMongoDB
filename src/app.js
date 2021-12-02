@@ -13,14 +13,7 @@ APP.get("/", (req, res) => {
   res.send("<h1>Main Page!!!!</h1>");
 });
 
-APP.use(
-  "/api/character",
-  (req, res, next) => {
-    console.log("Middleware");
-    next();
-  },
-  CharacterRouter
-);
+APP.use("/api/character", CharacterRouter);
 
 const connectToMongoDB = () => {
   mongoose

@@ -39,6 +39,8 @@ router.post("/", jsonParser, async (req, res) => {
   try {
     const createdCharacter = CharacterRepository.createNewCharacter(req.body);
 
+    console.log(await createdCharacter);
+
     res.send(await createdCharacter);
   } catch (error) {
     console.log("could not create character");

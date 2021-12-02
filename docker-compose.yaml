@@ -9,8 +9,6 @@ services:
     environment:
       - PORT=5000
       - DB_CONNECTION=""
-      - VIRTUAL_HOST=expressmongo.localhost
-      - LETSENCRYPT_HOST=expressmongo.localhost
     networks:
       - ExpressMongoDBNetwork
 

@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const cors = require("cors");
 
 const { DB_CONNECTION, PORT } = require("./Config/config");
 const APP = express();
 
 const CharacterRouter = require("./Route/Api/CharacterController");
+
+APP.use(cors());
 
 APP.get("/", (req, res) => {
   res.send("<h1>Main Page!!!!</h1>");

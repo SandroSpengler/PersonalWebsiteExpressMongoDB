@@ -37,7 +37,7 @@ const createNewCharacter = async (character) => {
   } catch (error) {
     console.log("could not save character " + error.message);
 
-    return error.message;
+    throw new Error(error.message);
   }
 };
 

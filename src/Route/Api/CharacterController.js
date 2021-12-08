@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const bodyParser = require("body-parser");
-const jsonParser = bodyParser.json();
-
-const CharacterRepository = require("../../Repository/Character/CharacterRepository");
+const CharacterRepository = require("../../Repository/CharacterRepository");
 
 router.get("/", async (req, res) => {
   try {
@@ -32,13 +29,12 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", jsonParser, async (req, res) => {
+router.post("/", async (req, res) => {
   // Todo
   // Validate Character Input
 
   try {
     const createdCharacter = CharacterRepository.createNewCharacter(req.body);
-
     res.send(await createdCharacter);
   } catch (error) {
     console.log("could not create character");

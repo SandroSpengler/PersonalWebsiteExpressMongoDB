@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 
+const bodyParser = require("body-parser");
+const jsonParser = bodyParser.json();
+
 const { DB_CONNECTION, PORT } = require("./Config/config");
 const APP = express();
 
-const CharacterRouter = require("./Route/Api/CharacterController");
+const showRouter = require("./Route/Api/ShowController");
+const characterRouter = require("./Route/Api/CharacterController");
 
 APP.use(cors());
 
@@ -13,7 +17,8 @@ APP.get("/", (req, res) => {
   res.send("<h1>Main Page!!!!</h1>");
 });
 
-APP.use("/api/character", CharacterRouter);
+APP.use("/api/show", jsonParser, showRouter);
+APP.use("/api/character", jsonParser, characterRouter);
 
 const connectToMongoDB = () => {
   mongoose

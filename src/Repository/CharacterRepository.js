@@ -1,4 +1,4 @@
-const CharacterSchema = require("../../Model/Schema/CharacterSchema");
+const CharacterSchema = require("../Model/Schema/CharacterSchema");
 
 const getAllCharacters = async () => {
   try {
@@ -8,8 +8,6 @@ const getAllCharacters = async () => {
   } catch (error) {
     console.log("could not find Characters: " + error.message);
   }
-
-  return await searchAllUsers;
 };
 
 const getOneCharacter = async (id) => {
@@ -26,12 +24,13 @@ const createNewCharacter = async (character) => {
   let tmpCharacter = new CharacterSchema();
 
   try {
+    tmpCharacter.showId = character.showId;
     tmpCharacter.showName = character.showName;
     tmpCharacter.firstName = character.firstName;
     tmpCharacter.lastName = character.lastName;
     tmpCharacter.age = character.age;
 
-    savedCharacter = await tmpCharacter.save();
+    let savedCharacter = await tmpCharacter.save();
 
     return savedCharacter;
   } catch (error) {

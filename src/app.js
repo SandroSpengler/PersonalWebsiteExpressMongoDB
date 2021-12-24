@@ -21,6 +21,7 @@ APP.use("/api/show", jsonParser, showRouter);
 APP.use("/api/character", jsonParser, characterRouter);
 
 const connectToMongoDB = () => {
+  console.log(DB_CONNECTION);
   mongoose
     .connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB"))

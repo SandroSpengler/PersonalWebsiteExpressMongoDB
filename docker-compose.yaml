@@ -23,5 +23,8 @@ services:
     networks:
       - ExpressMongoDBNetwork
 
+volumes:
+  ExpressMongoDBData:
+
 networks:
   ExpressMongoDBNetwork:

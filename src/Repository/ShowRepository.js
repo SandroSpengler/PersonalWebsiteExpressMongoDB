@@ -30,6 +30,14 @@ const createShow = async (show) => {
   }
 };
 
+const deleteShow = async (showId) => {
+  try {
+    // Check whether or the show exists
+
+    await ShowSchema.findByIdAndDelete(showId);
+  } catch (error) {}
+};
+
 const showAlreadyExsits = async (showName) => {
   try {
     const foundShow = await ShowSchema.find({ showName: showName });
@@ -44,4 +52,4 @@ const showAlreadyExsits = async (showName) => {
   }
 };
 
-module.exports = { getAllShows, createShow, showAlreadyExsits };
+module.exports = { getAllShows, createShow, deleteShow, showAlreadyExsits };

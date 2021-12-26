@@ -14,17 +14,16 @@ const characterRouter = require("./Route/Api/CharacterController");
 APP.use(cors());
 
 APP.get("/", (req, res) => {
-  res.send("<h1>Main Page!!!!</h1>");
+  res.send("<h1>Main Page</h1>");
 });
 
 APP.use("/api/show", jsonParser, showRouter);
 APP.use("/api/character", jsonParser, characterRouter);
 
 const connectToMongoDB = () => {
-  console.log(DB_CONNECTION);
   mongoose
     .connect(DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("Connected to MongoDB"))
+    .then()
     .catch((err) => {
       console.log(err.message);
     });

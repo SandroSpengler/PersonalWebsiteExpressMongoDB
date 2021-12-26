@@ -36,4 +36,14 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:showId", async (req, res) => {
+  try {
+    showRepository.deleteShow(req.params.showId);
+
+    return res.send({ message: "Show has been deleted" });
+  } catch (error) {
+    console.log("could not delte show " + error.message);
+  }
+});
+
 module.exports = router;
